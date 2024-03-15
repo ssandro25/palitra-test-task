@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { useProductStore } from "@/stores/ProductStore";
+import {useProductStore} from "@/stores/ProductStore";
 import CheckRating from "@/components/CheckRating.vue";
 
 export default {
@@ -50,19 +50,21 @@ export default {
     },
 
     data() {
-      return {
-          store: useProductStore(),
-      }
+        return {
+            store: useProductStore(),
+        }
     },
 
     methods: {
         addToCart() {
+            // eslint-disable-next-line vue/no-mutating-props
+            this.currentProduct.count = 1
+
             this.store.setCartProducts(this.currentProduct)
         }
     }
 }
 </script>
-
 
 
 <style scoped lang="scss">

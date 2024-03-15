@@ -20,26 +20,40 @@
 
                                 <p class="mb-0">
                                     {{ product.price }}
-
                                 </p>
                             </div>
 
                             <div class="d-flex justify-content-between gap-2">
                                 <div class="d-flex align-items-center border rounded">
-                                    <button class="btn btn-sm border-0 p-0 change_count__btn"
-                                            type="button"
+                                    <button
+                                        type="button"
+                                        class="btn btn-sm border-0 p-0 change_count__btn"
                                     >
-                                        <i class="fa-solid fa-minus w-100 h-100 d-flex align-items-center justify-content-center"></i>
+                                        <i
+                                            v-if="product.count > 1"
+                                            class="fa-solid fa-minus w-100 h-100 d-flex align-items-center justify-content-center"
+                                            @click="decreaseQuantity(product.id)"
+                                        ></i>
+
+                                        <i
+                                            v-if="product.count === 1"
+                                            class="fa-solid fa-xmark text-danger w-100 h-100 d-flex align-items-center justify-content-center"
+                                            @click="removeFromCart(product.id)"
+                                        ></i>
                                     </button>
 
                                     <input
+                                        v-model="product.count"
                                         class="form-control text-center p-2 border-start border-end border-0 rounded-0 cart_count__input"
                                         type="number"
                                         readonly
                                     >
 
-                                    <button class="btn btn-sm border-0 p-0 change_count__btn"
-                                            type="button"
+                                    <button
+                                        type="button"
+                                        class="btn btn-sm border-0 p-0 change_count__btn"
+                                        @click="increaseQuantity(product.id)"
+                                        :disabled="product.count >= product.stock"
                                     >
                                         <i class="fa-solid fa-plus"></i>
                                     </button>
@@ -72,13 +86,37 @@ export default {
         return {
             store: useProductStore(),
 
-            products: []
+            products: [],
         }
     },
 
     methods: {
         removeFromCart(id) {
             this.store.removeFromCart(id)
+        },
+
+        decreaseQuantity(productID) {
+            let product = this.store.cartProducts.find(product => product.id === productID)
+            product.count--
+
+            let data = {
+                'productID' : productID,
+                'productCount' : product.count
+            }
+
+            this.store.updateCartProductCount(data)
+        },
+
+        increaseQuantity(productID) {
+            let product = this.store.cartProducts.find(product => product.id === productID)
+            product.count++
+
+            let data = {
+                'productID' : productID,
+                'productCount' : product.count
+            }
+
+            this.store.updateCartProductCount(data)
         }
     },
 
@@ -91,7 +129,7 @@ export default {
 <style scoped>
 .cart_count__input,
 .change_count__btn {
-    width: 40px;
+    width: 55px;
     height: 35px;
 }
 </style>

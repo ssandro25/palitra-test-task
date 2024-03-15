@@ -16,8 +16,24 @@ export const useProductStore = defineStore('useProductStore', {
             const index = this.cartProducts.findIndex(product => product.id === parseInt(id));
             if (index !== -1) {
                 this.cartProducts.splice(index, 1);
+
                 localStorage.setItem('cartProducts', JSON.stringify(this.cartProducts));
             }
-        }
+        },
+
+        updateCartProductCount(data) {
+            let id = data.productID
+            let count = data.productCount
+
+            this.cartProducts = this.cartProducts.map(product => {
+                if(product.id === id) {
+                    product.count = count
+                }
+
+                return product
+            })
+
+            localStorage.setItem('cartProducts', JSON.stringify(this.cartProducts))
+        },
     }
 })
