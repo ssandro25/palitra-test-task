@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Index from "@/views/Index.vue";
 import ViewProduct from "@/views/ViewProduct.vue";
 import ProductsCart from "@/views/ProductsCart.vue";
+import CheckOut from "@/views/CheckOut.vue";
 
 const routes = [
   {
@@ -20,6 +21,12 @@ const routes = [
     path: '/cart',
     name: 'cart',
     component: ProductsCart
+  },
+
+  {
+    path: '/check-out',
+    name: 'check-out',
+    component: CheckOut
   },
 ]
 
