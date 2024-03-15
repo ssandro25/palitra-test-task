@@ -27,7 +27,11 @@
                 Add to cart
             </button>
 
-            <button class="btn btn-success flex-grow-1">
+            <button
+                type="button"
+                class="btn btn-success flex-grow-1"
+                @click="pushCheckOutRoute"
+            >
                 Buy
             </button>
         </div>
@@ -61,6 +65,12 @@ export default {
             this.currentProduct.count = 1
 
             this.store.setCartProducts(this.currentProduct)
+        },
+
+        pushCheckOutRoute() {
+            this.addToCart()
+
+            this.$router.push('/check-out')
         }
     }
 }

@@ -47,8 +47,8 @@
                     Total: {{ total }} $
                 </p>
 
-                <router-link to="/" class="btn btn-success">
-                    გადახდა
+                <router-link to="/" class="btn btn-success px-5">
+                    PAY
                 </router-link>
             </div>
         </div>

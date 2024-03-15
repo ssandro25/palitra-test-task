@@ -9,7 +9,7 @@
                 <router-link :to="{ name: 'cart' }" class="d-block position-relative">
                     <img :src="CartIcon" width="20" alt="Cart icon">
 
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
+                    <span v-if="store.cartProducts.length" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
                         {{ store.cartProducts.length }}
                     </span>
                 </router-link>
