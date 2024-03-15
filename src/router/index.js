@@ -11,11 +11,6 @@ const routes = [
   },
 
   {
-    path: '/:page',
-    component: Index
-  },
-
-  {
     path: '/product/:productID',
     name: 'product',
     component: ViewProduct
