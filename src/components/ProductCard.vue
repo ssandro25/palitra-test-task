@@ -5,9 +5,9 @@
                 <img :src="product.thumbnail" class="w-100" alt="">
             </div>
 
-            <p class="product__title fw-bold text-center mt-2 mb-0">
+            <router-link  :to="'/product/'+product.id"  class="product__title d-block text-decoration-none fw-bold text-center mt-2 mb-0">
                 {{ product.title }}
-            </p>
+            </router-link>
 
             <p class="product__price mt-2 text-center mb-0">
                 {{ product.price }} $
@@ -33,10 +33,6 @@ export default {
             type: Object
         }
     },
-
-    mounted() {
-        console.log(this.product)
-    }
 }
 </script>
 
