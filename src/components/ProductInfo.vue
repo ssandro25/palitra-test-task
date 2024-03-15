@@ -17,10 +17,25 @@
 
             <CheckRating :current-product="currentProduct"/>
         </div>
+
+        <div class="d-flex align-items-center gap-3 mt-3">
+            <button
+                type="button"
+                class="btn btn-warning flex-grow-1"
+                @click="addToCart()"
+            >
+                Add to cart
+            </button>
+
+            <button class="btn btn-success flex-grow-1">
+                Buy
+            </button>
+        </div>
     </div>
 </template>
 
 <script>
+import { useProductStore } from "@/stores/ProductStore";
 import CheckRating from "@/components/CheckRating.vue";
 
 export default {
@@ -33,6 +48,18 @@ export default {
     props: {
         currentProduct: Object
     },
+
+    data() {
+      return {
+          store: useProductStore(),
+      }
+    },
+
+    methods: {
+        addToCart() {
+            this.store.setCartProducts(this.currentProduct)
+        }
+    }
 }
 </script>
 

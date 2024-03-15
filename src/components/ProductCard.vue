@@ -5,7 +5,7 @@
                 <img :src="product.thumbnail" class="w-100" alt="">
             </div>
 
-            <router-link  :to="'/product/'+product.id"  class="product__title d-block text-decoration-none fw-bold text-center mt-2 mb-0">
+            <router-link :to="'/product/'+product.id"  class="product__title d-block text-decoration-none fw-bold text-center mt-2 mb-0">
                 {{ product.title }}
             </router-link>
 

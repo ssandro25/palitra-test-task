@@ -10,7 +10,7 @@
                     <img :src="CartIcon" width="20" alt="Cart icon">
 
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
-                        3
+                        {{ store.cartProducts.length }}
                     </span>
                 </router-link>
             </div>
@@ -19,12 +19,14 @@
 </template>
 
 <script>
+import { useProductStore } from "@/stores/ProductStore";
 import CartIcon from "@/assets/images/shopping-bag-icon.svg"
 export default {
     name: "v-header",
 
     data() {
         return {
+            store: useProductStore(),
             CartIcon
         }
     }
