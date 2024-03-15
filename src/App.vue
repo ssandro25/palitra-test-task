@@ -1,7 +1,7 @@
 <template>
     <Header />
 
-    <main class="container-fluid">
+    <main class="container-fluid mt-5">
         <router-view/>
     </main>
 </template>
