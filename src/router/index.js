@@ -8,25 +8,37 @@ const routes = [
   {
     path: '/',
     name: 'index',
-    component: Index
+    component: Index,
+    meta: {
+      title: 'NEWSROOM | Market'
+    }
   },
 
   {
     path: '/product/:productID',
     name: 'product',
-    component: ViewProduct
+    component: ViewProduct,
+    meta: {
+      title: 'Product'
+    }
   },
 
   {
     path: '/cart',
     name: 'cart',
-    component: ProductsCart
+    component: ProductsCart,
+    meta: {
+      title: 'Cart'
+    }
   },
 
   {
     path: '/check-out',
     name: 'check-out',
-    component: CheckOut
+    component: CheckOut,
+    meta: {
+      title: 'CheckOut'
+    }
   },
 ]
 
@@ -35,4 +47,7 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to) => {
+  document.title = to.meta.title
+})
 export default router

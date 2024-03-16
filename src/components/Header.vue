@@ -1,8 +1,8 @@
 <template>
     <header class="header container-fluid p-3 bg-body-secondary">
         <div class="container d-flex align-items-center justify-content-between">
-            <router-link :to="{ name: 'index' }">
-                LOGO
+            <router-link :to="{ name: 'index' }" class="text-decoration-none fw-bold text-dark">
+                NEWSROOM LOGO
             </router-link>
 
             <div class="d-flex align-items-center gap-3">
