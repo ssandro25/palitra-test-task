@@ -1,13 +1,13 @@
 <template>
     <div class="product">
-        <div class="border rounded">
+        <router-link :to="'/product/'+product.id" class="border d-block rounded text-decoration-none text-dark">
             <div class="product__image rounded-top overflow-hidden">
                 <img :src="product.thumbnail" class="w-100" alt="">
             </div>
 
-            <router-link :to="'/product/'+product.id"  class="product__title d-block text-decoration-none fw-bold text-center mt-2 mb-0">
+            <p :to="'/product/'+product.id"  class="product__title d-block fw-bold text-center mt-2 mb-0">
                 {{ product.title }}
-            </router-link>
+            </p>
 
             <p class="product__price mt-2 text-center mb-0">
                 {{ product.price }} $
@@ -20,7 +20,7 @@
             <p class="product__description p-2 mb-0">
                 {{ product.description }}
             </p>
-        </div>
+        </router-link>
     </div>
 </template>
 

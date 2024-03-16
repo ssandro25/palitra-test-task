@@ -20,6 +20,7 @@
 
         <div class="d-flex align-items-center gap-3 mt-3">
             <button
+                :disabled="addedToCart"
                 type="button"
                 class="btn btn-warning flex-grow-1"
                 @click="addToCart()"
@@ -50,7 +51,8 @@ export default {
     },
 
     props: {
-        currentProduct: Object
+        currentProduct: Object,
+        addedToCart: Boolean
     },
 
     data() {
@@ -68,11 +70,13 @@ export default {
         },
 
         pushCheckOutRoute() {
-            this.addToCart()
+            if (!this.addedToCart) {
+                this.addToCart()
+            }
 
             this.$router.push('/check-out')
         }
-    }
+    },
 }
 </script>
 

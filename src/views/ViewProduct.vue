@@ -10,7 +10,7 @@
             </div>
 
             <div class="col-lg-3 mt-lg-0 mt-3">
-                <ProductInfo :current-product="currentProduct"/>
+                <ProductInfo :current-product="currentProduct" :addedToCart="addedToCart"/>
             </div>
         </div>
     </div>
@@ -23,6 +23,7 @@ import axios from "axios";
 import ProductCarousel from "@/components/ProductCarousel.vue";
 import ProductDescription from "@/components/ProductDescription.vue";
 import ProductInfo from "@/components/ProductInfo.vue";
+import {useProductStore} from "@/stores/ProductStore";
 
 export default {
     name: "ViewProduct",
@@ -36,6 +37,8 @@ export default {
     data() {
         return {
             currentProduct: [],
+            store: useProductStore(),
+            addedToCart: false
         }
     },
 
@@ -44,6 +47,11 @@ export default {
             try {
                 const response = await axios.get('https://dummyjson.com/products/'+this.$route.params.productID);
                 this.currentProduct = response.data;
+
+                if (this.store.cartProducts.find(e => e.id === this.currentProduct.id)) {
+                    this.addedToCart = true
+                }
+
             } catch (e) {
                 alert('Product not found!')
             }

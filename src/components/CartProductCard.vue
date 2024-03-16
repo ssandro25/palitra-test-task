@@ -4,7 +4,7 @@
         :key="product.id"
         class="col mb-3"
     >
-        <div class="border rounded overflow-hidden row m-0">
+        <div class="border rounded overflow-hidden row m-0 cart__product">
             <div class="col-lg-6 p-0 border-end">
                 <img :src="product.thumbnail" class="cart__product_image w-100" alt="">
             </div>
@@ -12,7 +12,7 @@
             <div class="col-lg-6">
                 <div class="d-flex flex-column justify-content-between gap-3 h-100 p-2">
                     <div>
-                        <p class="d-flex gap-1 mb-0">
+                        <router-link :to="'/product/'+product.id" class="cart__product_title d-flex gap-1 mb-0 text-decoration-none text-dark">
                                     <span class="fw-bold">
                                         {{ product.title }}
                                     </span>
@@ -20,7 +20,7 @@
                             <span class="text-capitalize">
                                         {{ product.category }}
                                     </span>
-                        </p>
+                        </router-link>
 
                         <p class="mb-0">
                             {{ product.price * product.count}} $
@@ -136,11 +136,17 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.cart__product {
+    &:hover &_title {
+        text-decoration: underline !important;
+    }
+}
 .cart__product_image {
     height: 120px;
     object-fit: cover;
 }
+
 .cart_count__input,
 .change_count__btn {
     width: 55px;
